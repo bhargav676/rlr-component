@@ -148,16 +148,14 @@ app.get('/components', async (req, res) => {
     }
   });
   
-  // Delete an image (DELETE /components/:id)
-// DELETE endpoint to remove a component by ID
 app.delete('/components/:id', async (req, res) => {
     const { id } = req.params;
     
     try {
-      const deletedComponent = await component.findByIdAndDelete(id); // Finds and deletes the component by _id
+      const deletedComponent = await component.findByIdAndDelete(id); 
       
       if (!deletedComponent) {
-        return res.status(404).json({ message: "Component not found" }); // If the component doesn't exist
+        return res.status(404).json({ message: "Component not found" }); 
       }
       
       res.status(200).json({
