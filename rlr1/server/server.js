@@ -141,7 +141,7 @@ app.post('/components', upload.single('file'), async (req, res) => {
 app.get('/components', async (req, res) => {
     try {
       const images = await component.find(); // Fetch all images from the MongoDB collection
-      res.status(200).json(images); // Send the images in response
+      res.status(200).json(images); 
     } catch (error) {
       console.error("Error fetching images:", error);
       res.status(500).send("Error fetching images: " + error.message);
@@ -167,7 +167,9 @@ app.delete('/components/:id', async (req, res) => {
       res.status(500).json({ message: "Error deleting component", error: error.message });
     }
   });
-  
+app.get('/',(req,res)=>{
+  res.send('hello world');
+})
   
 
 app.listen(4001, () => {
