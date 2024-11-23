@@ -43,7 +43,7 @@ function UploadImage() {
     formData.append('description', description);
 
     try {
-      const response = await axios.post('http://localhost:4001/components', formData, {
+      const response = await axios.post('https://rlr-component-server.vercel.app/components', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setMessage(response.data.status);

@@ -8,10 +8,10 @@ function ImageList() {
   useEffect(() => {
     const fetchComponents = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/components');
+        const response = await axios.get('https://rlr-component-server.vercel.app/components');
         setComponents(response.data);
       } catch (error) {
-        setMessage("Error fetching components");
+        setMessage("Error fetching components"); 
       }
     };
 
@@ -20,7 +20,7 @@ function ImageList() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:4001/components/${id}`);
+      const response = await axios.delete(`https://rlr-component-server.vercel.app/${id}`);
       setMessage(response.data.status);
       setComponents(components.filter(component => component._id !== id));
     } catch (error) {
