@@ -140,7 +140,7 @@ app.post('/components', upload.single('file'), async (req, res) => {
   // Fetch all images (GET /components)
 app.get('/components', async (req, res) => {
     try {
-      const images = await component.find(); // Fetch all images from the MongoDB collection
+      const images = await component.find(); 
       res.status(200).json(images); 
     } catch (error) {
       console.error("Error fetching images:", error);

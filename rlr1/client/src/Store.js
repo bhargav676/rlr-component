@@ -19,14 +19,35 @@ function ImageList() {
   }, []);
 
   const handleDelete = async (id) => {
+    if (!id) {
+      setMessage("Invalid component ID");
+      return;
+    }
+  
     try {
-      const response = await axios.delete(`https://rlr-component-server.vercel.app/${id}`);
-      setMessage(response.data.status);
-      setComponents(components.filter(component => component._id !== id));
+      const response = await axios.delete(`https://rlr-component-server.vercel.app/components/${id}`);
+      
+      if (response.status === 200) {  
+        setMessage("Component deleted successfully");
+        setComponents(components.filter(component => component._id !== id));
+      } else {
+        setMessage("Unexpected response from server");
+      }
     } catch (error) {
-      setMessage("Error deleting component");
+      
+      if (error.response) {
+        
+        setMessage(`Error deleting component: ${error.response.data.message || error.response.statusText}`);
+      } else if (error.request) {
+       
+        setMessage("No response from server. Please try again later.");
+      } else {
+        
+        setMessage(`Error: ${error.message}`);
+      }
     }
   };
+  
 
   return (
     <>
