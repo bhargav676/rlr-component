@@ -4,13 +4,13 @@ import axios from 'axios';
 function UploadImage() {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
-  const [messageType, setMessageType] = useState(''); // 'error' or 'success'
+  const [messageType, setMessageType] = useState(''); 
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [preview, setPreview] = useState(null);
-  const [loading, setLoading] = useState(false); // New state for loading
+  const [loading, setLoading] = useState(false); 
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];

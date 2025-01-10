@@ -12,7 +12,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     axios
-      .get('http://127.0.0.1:4000/getorders')
+      .get('https://rlrserver.vercel.app/getorders')
       .then((res) => {
         setLoading(false);
         setOrders(res.data.reverse()); 

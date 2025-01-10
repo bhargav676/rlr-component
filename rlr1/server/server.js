@@ -130,9 +130,6 @@ app.post('/components', upload.single('file'), async (req, res) => {
     }
   });
 
-
-
-  // Fetch all images (GET /components)
 app.get('/components', async (req, res) => {
     try {
       const images = await component.find(); 

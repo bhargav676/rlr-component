@@ -6,7 +6,7 @@ const ContactData = () => {
   useEffect(() => {
     const fetchContactData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/contact-data');
+        const response = await fetch('https://rlrserver.vercel.app/contact-data');
         const data = await response.json();
         setContactData(data.reverse()); 
       } catch (error) {
