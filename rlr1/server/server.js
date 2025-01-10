@@ -4,7 +4,7 @@ const cors = require('cors');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const Image = require('./model');  // Assuming your model is in 'model.js'
+const Image = require('./model');  
 const component=require('./component')
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(cors());
 cloudinary.config({
   cloud_name: 'dthh2uenu',
   api_key: '184761731987834',   
-  api_secret: '3BY0vtJkpgH7vJ527uMEsJ58tHs',
+  api_secret: '3BY0vtJkpgH7vJ527uMEsJ58tHs', 
 });
 
 
@@ -26,18 +26,16 @@ mongoose.connect('mongodb+srv://322103312083:951509290@cluster0.pz9fe.mongodb.ne
     console.log('Error occurred while connecting to the database:', err);
   });
 
-// Configure multer-storage-cloudinary
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'uploads',  // The folder where images will be stored in Cloudinary
+    folder: 'uploads',  
     allowed_formats: ['jpg', 'jpeg', 'png'],
   },
 });
 
 const upload = multer({ storage: storage });
- 
-// Backend Endpoint to handle image upload
+
 app.post('/uploadimage', upload.fields([ 
   { name: 'mainImage', maxCount: 1 },
   { name: 'step_1_image', maxCount: 1 },
@@ -57,7 +55,6 @@ app.post('/uploadimage', upload.fields([
     return res.status(400).send("No files uploaded.");
   }
 
-  // Validate required fields in the request body
   const { title, abstract, videoLink, componentsLink } = req.body;
   if (!title || !abstract) {
     return res.status(400).send("Title and abstract are required.");
@@ -66,7 +63,7 @@ app.post('/uploadimage', upload.fields([
   const imageUrls = []; 
   const stepInputs = [];
 
-  // Collect all image URLs from Cloudinary responses
+
   for (let i = 1; i <= 10; i++) {
     if (req.files[`step_${i}_image`]) {
       imageUrls.push(req.files[`step_${i}_image`][0].path);
@@ -100,15 +97,13 @@ app.post('/uploadimage', upload.fields([
 
 app.get('/getimages', async (req, res) => {
   try {
-    // Fetch all the images and data from the database
+ 
     const images = await Image.find();
 
-    // Check if no images found
     if (!images || images.length === 0) {
       return res.status(404).send("No images found.");
     }
 
-    // Return the images and associated data
     res.status(200).json(images);
   } catch (error) {
     console.error("Error fetching images:", error);
@@ -129,7 +124,7 @@ app.post('/components', upload.single('file'), async (req, res) => {
       const newdata = new component({ url: imageUrl,name,quantity,price,description });
       await newdata.save();
       res.status(200).json({ status: "Image uploaded successfully", imageUrl });
-    } catch (error) {
+    } catch (error) { 
       console.error("Error uploading image:", error);
       res.status(500).send("Error uploading image: " + error.message);
     }

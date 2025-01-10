@@ -6,5 +6,6 @@ const componetsschema=new mongoose.Schema({
     price:Number,
     description:String
 })
+
 const component=mongoose.model('component',componetsschema);
 module.exports=component

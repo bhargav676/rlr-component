@@ -11,7 +11,8 @@ const Navbar = () => {
           <Link to='/'><p className="nav-item">First page</p></Link>
           <Link to='/component'><p className="nav-item">Component</p></Link>
           <Link to='/store'><p className="nav-item">Store</p></Link>
-          <Link to='details'><p className="nav-item">Custom Details</p></Link>
+          <Link to='/details'><p className="nav-item">Custom Details</p></Link>
+          <Link to='/problem'><p className="nav-item">Problems</p></Link>
         </div>
       </div>
     </div>
