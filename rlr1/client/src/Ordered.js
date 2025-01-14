@@ -27,7 +27,7 @@ const MyOrders = () => {
   const handleStatusChange = (orderId, status) => {
     setUpdatingOrderId(orderId); 
     axios
-      .put(`http://127.0.0.1:4000/update-order-status/${orderId}`, { status })
+      .put(`https://rlrserver.vercel.app/update-order-status/${orderId}`, { status })
       .then((res) => {
         setOrders((prevOrders) =>
           prevOrders.map((order) =>
